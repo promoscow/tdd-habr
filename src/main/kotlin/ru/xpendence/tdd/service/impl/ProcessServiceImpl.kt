@@ -17,9 +17,8 @@ class ProcessServiceImpl(
         TODO("Not yet implemented")
     }
 
-    override fun get(id: UUID): Process {
-        TODO("Not yet implemented")
-    }
+    override fun get(id: UUID): Process = repository.find(id)
+        ?: throw IllegalStateException("Process not found by id: $id")
 
     override fun delete(id: UUID) {
         TODO("Not yet implemented")
