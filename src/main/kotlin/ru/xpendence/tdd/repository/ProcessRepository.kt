@@ -6,4 +6,5 @@ import java.util.UUID
 interface ProcessRepository {
     fun save(process: Process): Process
     fun find(id: UUID): Process?
+    fun update(process: Process)
 }

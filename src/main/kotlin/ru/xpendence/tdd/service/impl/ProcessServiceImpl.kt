@@ -14,7 +14,7 @@ class ProcessServiceImpl(
     override fun save(process: Process): Process = repository.save(process)
 
     override fun update(process: Process) {
-        TODO("Not yet implemented")
+        repository.update(process)
     }
 
     override fun get(id: UUID): Process = repository.find(id)

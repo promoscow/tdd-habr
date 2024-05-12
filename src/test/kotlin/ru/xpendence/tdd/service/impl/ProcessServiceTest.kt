@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import ru.xpendence.tdd.CommonContext
+import ru.xpendence.tdd.domain.type.ProcessState
 import ru.xpendence.tdd.service.ProcessService
 import java.util.UUID
 
@@ -51,5 +52,22 @@ class ProcessServiceTest : CommonContext() {
         //when
         //then
         assertThrows(IllegalStateException::class.java) { service.get(randomId) }
+    }
+
+    @Test
+    fun update() {
+        //prepare
+        val process = processGenerator.generate().let { service.save(it) }
+        val state = ProcessState.SUSPENDED
+        val toUpdate = process.copy(state = state)
+        assertNotEquals(process.state, toUpdate.state)
+        //when
+        service.update(toUpdate)
+        //then
+        service.get(toUpdate.id!!)
+            .also { updated ->
+                assertEquals(toUpdate.state, updated.state)
+                assertNotNull(updated.updatedAt)
+            }
     }
 }
