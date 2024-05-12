@@ -7,7 +7,7 @@ import java.util.UUID
 data class Process(
     val id: UUID? = null,
     val state: ProcessState,
-    val createdAt: OffsetDateTime,
+    val createdAt: OffsetDateTime? = null,
     val updatedAt: OffsetDateTime? = null,
     val processVersions: List<ProcessVersion>? = null
 )
