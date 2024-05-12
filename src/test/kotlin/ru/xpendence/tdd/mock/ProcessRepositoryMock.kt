@@ -19,6 +19,10 @@ class ProcessRepositoryMock(
             )
             .also { processMockStorage[it.id!!] = it }
 
+    override fun delete(id: UUID) {
+        processMockStorage.remove(id)
+    }
+
     override fun update(process: Process) {
         process
             .copy(updatedAt = OffsetDateTime.now())

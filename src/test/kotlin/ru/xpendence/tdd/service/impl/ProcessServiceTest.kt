@@ -70,4 +70,14 @@ class ProcessServiceTest : CommonContext() {
                 assertNotNull(updated.updatedAt)
             }
     }
+
+    @Test
+    fun delete() {
+        //prepare
+        val process = processGenerator.generate().let { service.save(it) }
+        //when
+        service.delete(process.id!!)
+        //then
+        assertThrows(IllegalStateException::class.java) { service.get(process.id!!) }
+    }
 }

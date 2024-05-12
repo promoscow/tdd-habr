@@ -21,6 +21,6 @@ class ProcessServiceImpl(
         ?: throw IllegalStateException("Process not found by id: $id")
 
     override fun delete(id: UUID) {
-        TODO("Not yet implemented")
+        repository.delete(id)
     }
 }
